@@ -11,7 +11,7 @@ body{
   height:100vh;
   background:
     linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
-    url("./images/266538fb0b0e896d52a248d8e84747a0.jpg"); /* initial kiss */
+    url("./images/95223aecf2f95c38457cdc9d3cbd05ff.jpg"); /* initial cute image */
   background-size:cover;
   background-position:center;
   display:flex;
@@ -26,7 +26,7 @@ body{
 body.no-bg{
   background:
     linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)),
-    url("./images/2f1b2848897097c1b4bf44199613eea6.jpg"); /* sad */
+    url("./images/266538fb0b0e896d52a248d8e84747a0.jpg"); /* NO image */
   background-size:cover;
   background-position:center;
 }
@@ -35,7 +35,7 @@ body.no-bg{
 body.yes-bg{
   background:
     linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)),
-    url("./images/95223aecf2f95c38457cdc9d3cbd05ff.jpg"); /* cutu */
+    url("./images/2f1b2848897097c1b4bf44199613eea6.jpg"); /* YES image */
   background-size:cover;
   background-position:center;
 }
@@ -43,34 +43,34 @@ body.yes-bg{
 /* Card styling */
 .card{
   background:rgba(255,255,255,0.95);
-  padding:50px;
-  border-radius:30px;
+  padding:60px;
+  border-radius:35px;
   text-align:center;
-  box-shadow:0 15px 40px rgba(0,0,0,0.35);
-  width:400px;
+  box-shadow:0 15px 45px rgba(0,0,0,0.35);
+  width:450px;
   z-index:2;
 }
 
 h1{
   color:#b11226;
-  font-size:32px;
-  margin-bottom:20px;
+  font-size:36px;
+  margin-bottom:25px;
 }
 
 p{
-  font-size:20px;
+  font-size:22px;
   color:#2b2b2b;
-  min-height:70px;
-  margin-bottom:20px;
+  min-height:80px;
+  margin-bottom:25px;
 }
 
 button{
-  padding:15px 25px;
+  padding:16px 28px;
   border:none;
-  border-radius:25px;
-  font-size:18px;
+  border-radius:28px;
+  font-size:20px;
   cursor:pointer;
-  margin:10px;
+  margin:12px;
   font-family:inherit;
 }
 
@@ -87,7 +87,7 @@ button{
 /* Floating hearts */
 .heart{
   position:absolute;
-  font-size:24px;
+  font-size:28px;
   animation:float 6s infinite;
 }
 
@@ -100,7 +100,7 @@ button{
 /* Heart blast */
 .blast{
   position:absolute;
-  font-size:28px;
+  font-size:30px;
   animation:blast 2s forwards;
 }
 
@@ -112,7 +112,7 @@ button{
 /* Confetti */
 .confetti{
   position:absolute;
-  font-size:20px;
+  font-size:22px;
   animation:confettiFall 3s linear forwards;
 }
 
@@ -134,7 +134,7 @@ body.yes-zoom{
 </style>
 </head>
 <body>
-<!-- Initial floating hearts -->
+<!-- Floating hearts -->
 <div class="heart" style="left:10%;">💗</div>
 <div class="heart" style="left:25%;animation-delay:2s;">💖</div>
 <div class="heart" style="left:40%;animation-delay:4s;">💕</div>
@@ -166,7 +166,7 @@ const noTexts = [
   "Yepp I'm dead 💀",
   "U are talking to Akshita's ghost 👻",
   "pls babee 💖",
-  "no :("  // last special message
+  "no :("  // last message
 ];
 
 const musicFrame = document.getElementById("ytMusic");
@@ -202,7 +202,7 @@ function yesClick(){
   body.classList.remove("no-bg");
   document.getElementById("noBtn").style.display="none";
 
-  // Sequential romantic messages
+  // Romantic messages sequence
   const messages = [
     "I love you so much ❤️",
     "You're mine forever 💋",
@@ -219,7 +219,7 @@ function yesClick(){
   }
   showNextMessage();
 
-  // Heart blast animation
+  // Heart blast
   for(let i=0;i<25;i++){
     const h = document.createElement("div");
     h.className = "blast";
@@ -230,32 +230,32 @@ function yesClick(){
     setTimeout(()=>h.remove(),2000);
   }
 
-  // Continuous floating hearts
+  // Continuous hearts
   setInterval(()=>{
     const h = document.createElement("div");
     h.className = "heart";
     const hearts = ["💗","💖","💕","💞","💓"];
     h.innerText = hearts[Math.floor(Math.random()*hearts.length)];
     h.style.left = Math.random()*100 + "%";
-    h.style.fontSize = `${16+Math.random()*20}px`;
+    h.style.fontSize = `${18+Math.random()*20}px`;
     document.body.appendChild(h);
     setTimeout(()=>h.remove(),6000);
   }, 300);
 
-  // Confetti / sparkles
+  // Confetti
   setInterval(()=>{
     const c = document.createElement("div");
     c.className = "confetti";
     const emojis = ["✨","💫","🌟","💖"];
     c.innerText = emojis[Math.floor(Math.random()*emojis.length)];
     c.style.left = Math.random()*100 + "%";
-    c.style.fontSize = `${12+Math.random()*12}px`;
+    c.style.fontSize = `${14+Math.random()*14}px`;
     document.body.appendChild(c);
     setTimeout(()=>c.remove(),3000);
   }, 400);
 }
 
-// Force autoplay music (fix delay)
+// Music autoplay fix
 setTimeout(()=>{
   musicFrame.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
 }, 1000);
