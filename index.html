@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -139,10 +139,11 @@ body.yes-zoom{
   <button id="noBtn" onclick="noClick()">NO 🙃</button>
 </div>
 
-<!-- Ads-free music -->
-<audio id="bgMusic" autoplay loop>
-  <source src="./music/song.mp3" type="audio/mp3">
-</audio>
+<!-- YouTube music as before -->
+<iframe id="ytMusic" width="0" height="0"
+src="https://www.youtube.com/embed/rTuxUAuJRyY?start=39&end=90&autoplay=1&loop=1&playlist=rTuxUAuJRyY"
+title="YouTube Music Player" frameborder="0"
+allow="autoplay; encrypted-media"></iframe>
 
 <script>
 let noCount = 0;
@@ -158,6 +159,8 @@ const noTexts = [
   "pls  babee  💖",
   "no  :( "
 ];
+
+const musicFrame = document.getElementById("ytMusic");
 
 function typeWriter(element, text, speed=90){
   element.innerText = "";
@@ -238,7 +241,12 @@ function yesClick(){
     setTimeout(()=>c.remove(),3000);
   }, 400);
 }
-</script>
 
+// Start YouTube music after short delay for autoplay
+setTimeout(()=>{
+  musicFrame.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+}, 1000);
+
+</script>
 </body>
 </html>
