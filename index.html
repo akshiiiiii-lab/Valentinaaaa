@@ -11,7 +11,7 @@ body{
   height:100vh;
   background:
     linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
-    url("./images/95223aecf2f95c38457cdc9d3cbd05ff.jpg"); /* initial cute image */
+    url("./images/95223aecf2f95c38457cdc9d3cbd05ff.jpg"); /* Initial image */
   background-size:cover;
   background-position:center;
   display:flex;
@@ -22,7 +22,6 @@ body{
   transition: background 1s ease;
 }
 
-/* NO click background */
 body.no-bg{
   background:
     linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)),
@@ -31,7 +30,6 @@ body.no-bg{
   background-position:center;
 }
 
-/* YES click background */
 body.yes-bg{
   background:
     linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)),
@@ -40,37 +38,37 @@ body.yes-bg{
   background-position:center;
 }
 
-/* Card styling */
 .card{
   background:rgba(255,255,255,0.95);
-  padding:60px;
-  border-radius:35px;
+  padding:80px 60px;
+  border-radius:45px;
   text-align:center;
-  box-shadow:0 15px 45px rgba(0,0,0,0.35);
-  width:450px;
+  box-shadow:0 20px 60px rgba(0,0,0,0.35);
+  width:550px;
+  max-width:90%;
   z-index:2;
 }
 
 h1{
   color:#b11226;
-  font-size:36px;
-  margin-bottom:25px;
+  font-size:42px;
+  margin-bottom:35px;
 }
 
 p{
-  font-size:22px;
+  font-size:26px;
   color:#2b2b2b;
-  min-height:80px;
-  margin-bottom:25px;
+  min-height:100px;
+  margin-bottom:30px;
 }
 
 button{
-  padding:16px 28px;
+  padding:18px 32px;
   border:none;
-  border-radius:28px;
-  font-size:20px;
+  border-radius:30px;
+  font-size:22px;
   cursor:pointer;
-  margin:12px;
+  margin:15px;
   font-family:inherit;
 }
 
@@ -84,10 +82,9 @@ button{
   color:white;
 }
 
-/* Floating hearts */
 .heart{
   position:absolute;
-  font-size:28px;
+  font-size:32px;
   animation:float 6s infinite;
 }
 
@@ -97,10 +94,9 @@ button{
   100%{transform:translateY(-10vh);opacity:0;}
 }
 
-/* Heart blast */
 .blast{
   position:absolute;
-  font-size:30px;
+  font-size:34px;
   animation:blast 2s forwards;
 }
 
@@ -109,10 +105,9 @@ button{
   100%{transform:scale(1.6) translateY(-180px);opacity:0;}
 }
 
-/* Confetti */
 .confetti{
   position:absolute;
-  font-size:22px;
+  font-size:24px;
   animation:confettiFall 3s linear forwards;
 }
 
@@ -121,7 +116,6 @@ button{
   100%{transform:translateY(100vh) rotate(360deg);}
 }
 
-/* YES zoom effect */
 body.yes-zoom{
   animation:yesZoom 0.8s ease-in-out;
 }
@@ -166,7 +160,7 @@ const noTexts = [
   "Yepp I'm dead 💀",
   "U are talking to Akshita's ghost 👻",
   "pls babee 💖",
-  "no :("  // last message
+  "no :("
 ];
 
 const musicFrame = document.getElementById("ytMusic");
@@ -202,7 +196,6 @@ function yesClick(){
   body.classList.remove("no-bg");
   document.getElementById("noBtn").style.display="none";
 
-  // Romantic messages sequence
   const messages = [
     "I love you so much ❤️",
     "You're mine forever 💋",
@@ -219,7 +212,7 @@ function yesClick(){
   }
   showNextMessage();
 
-  // Heart blast
+  // Heart blast animation
   for(let i=0;i<25;i++){
     const h = document.createElement("div");
     h.className = "blast";
@@ -230,7 +223,7 @@ function yesClick(){
     setTimeout(()=>h.remove(),2000);
   }
 
-  // Continuous hearts
+  // Random hearts animation
   setInterval(()=>{
     const h = document.createElement("div");
     h.className = "heart";
@@ -242,7 +235,7 @@ function yesClick(){
     setTimeout(()=>h.remove(),6000);
   }, 300);
 
-  // Confetti
+  // Confetti animation
   setInterval(()=>{
     const c = document.createElement("div");
     c.className = "confetti";
@@ -255,10 +248,11 @@ function yesClick(){
   }, 400);
 }
 
-// Music autoplay fix
+// Auto start music after small delay
 setTimeout(()=>{
   musicFrame.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
 }, 1000);
+
 </script>
 </body>
 </html>
