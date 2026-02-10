@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -11,7 +11,7 @@ body{
   height:100vh;
   background:
     linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
-    url("./images/95223aecf2f95c38457cdc9d3cbd05ff.jpg"); /* Initial image */
+    url("./images/95223aecf2f95c38457cdc9d3cbd05ff.jpg");
   background-size:cover;
   background-position:center;
   display:flex;
@@ -25,7 +25,7 @@ body{
 body.no-bg{
   background:
     linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)),
-    url("./images/266538fb0b0e896d52a248d8e84747a0.jpg"); /* NO image */
+    url("./images/266538fb0b0e896d52a248d8e84747a0.jpg");
   background-size:cover;
   background-position:center;
 }
@@ -33,7 +33,7 @@ body.no-bg{
 body.yes-bg{
   background:
     linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)),
-    url("./images/2f1b2848897097c1b4bf44199613eea6.jpg"); /* YES image */
+    url("./images/2f1b2848897097c1b4bf44199613eea6.jpg");
   background-size:cover;
   background-position:center;
 }
@@ -61,7 +61,8 @@ p{
   min-height:120px;
   margin-bottom:35px;
   line-height:2;
-  word-spacing:6px; /* readable spacing */
+  word-spacing:6px;
+  white-space: pre-wrap; /* spacing fix */
 }
 
 button{
@@ -86,7 +87,7 @@ button{
 
 .heart{
   position:absolute;
-  font-size:80px; /* BIG floating hearts for YES */
+  font-size:80px;
   animation:float 6s infinite;
 }
 
@@ -130,6 +131,7 @@ body.yes-zoom{
 </style>
 </head>
 <body>
+
 <div class="card">
   <h1>Will you be my Valentine? 💘</h1>
   <p id="text"></p>
@@ -137,11 +139,10 @@ body.yes-zoom{
   <button id="noBtn" onclick="noClick()">NO 🙃</button>
 </div>
 
-<!-- YouTube Music -->
-<iframe id="ytMusic" width="0" height="0"
-src="https://www.youtube.com/embed/rTuxUAuJRyY?start=39&end=90&autoplay=1&loop=1&playlist=rTuxUAuJRyY"
-title="YouTube Music Player" frameborder="0"
-allow="autoplay; encrypted-media"></iframe>
+<!-- Ads-free music -->
+<audio id="bgMusic" autoplay loop>
+  <source src="./music/song.mp3" type="audio/mp3">
+</audio>
 
 <script>
 let noCount = 0;
@@ -157,8 +158,6 @@ const noTexts = [
   "pls  babee  💖",
   "no  :( "
 ];
-
-const musicFrame = document.getElementById("ytMusic");
 
 function typeWriter(element, text, speed=90){
   element.innerText = "";
@@ -239,12 +238,7 @@ function yesClick(){
     setTimeout(()=>c.remove(),3000);
   }, 400);
 }
-
-// Auto start music after small delay
-setTimeout(()=>{
-  musicFrame.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-}, 1000);
-
 </script>
+
 </body>
 </html>
