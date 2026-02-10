@@ -60,6 +60,7 @@ p{
   color:#2b2b2b;
   min-height:100px;
   margin-bottom:30px;
+  line-height:1.8; /* spacing between lines for NO messages */
 }
 
 button{
@@ -84,7 +85,7 @@ button{
 
 .heart{
   position:absolute;
-  font-size:32px;
+  font-size:50px; /* bigger hearts */
   animation:float 6s infinite;
 }
 
@@ -197,7 +198,7 @@ function yesClick(){
   document.getElementById("noBtn").style.display="none";
 
   const messages = [
-    "I love you so much ❤️",
+    "I love you abhiiiiii, my jaanu 💋",
     "You're mine forever 💋",
     "Let's make memories together 🌹"
   ];
@@ -223,14 +224,14 @@ function yesClick(){
     setTimeout(()=>h.remove(),2000);
   }
 
-  // Random hearts animation
+  // Bigger floating hearts
   setInterval(()=>{
     const h = document.createElement("div");
     h.className = "heart";
     const hearts = ["💗","💖","💕","💞","💓"];
     h.innerText = hearts[Math.floor(Math.random()*hearts.length)];
     h.style.left = Math.random()*100 + "%";
-    h.style.fontSize = `${18+Math.random()*20}px`;
+    h.style.fontSize = `${40+Math.random()*30}px`;
     document.body.appendChild(h);
     setTimeout(()=>h.remove(),6000);
   }, 300);
