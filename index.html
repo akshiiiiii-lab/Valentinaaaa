@@ -44,32 +44,33 @@ body.yes-bg{
   border-radius:45px;
   text-align:center;
   box-shadow:0 20px 60px rgba(0,0,0,0.35);
-  width:550px;
+  width:600px;
   max-width:90%;
   z-index:2;
 }
 
 h1{
   color:#b11226;
-  font-size:42px;
-  margin-bottom:35px;
+  font-size:46px;
+  margin-bottom:40px;
 }
 
 p{
-  font-size:26px;
+  font-size:28px;
   color:#2b2b2b;
-  min-height:100px;
-  margin-bottom:30px;
-  line-height:1.8; /* spacing between lines for NO messages */
+  min-height:120px;
+  margin-bottom:35px;
+  line-height:2;
+  word-spacing:4px; /* readable spacing */
 }
 
 button{
-  padding:18px 32px;
+  padding:20px 36px;
   border:none;
-  border-radius:30px;
-  font-size:22px;
+  border-radius:35px;
+  font-size:24px;
   cursor:pointer;
-  margin:15px;
+  margin:18px;
   font-family:inherit;
 }
 
@@ -85,7 +86,7 @@ button{
 
 .heart{
   position:absolute;
-  font-size:50px; /* bigger hearts */
+  font-size:80px; /* BIG floating hearts for YES */
   animation:float 6s infinite;
 }
 
@@ -97,7 +98,7 @@ button{
 
 .blast{
   position:absolute;
-  font-size:34px;
+  font-size:36px;
   animation:blast 2s forwards;
 }
 
@@ -108,7 +109,7 @@ button{
 
 .confetti{
   position:absolute;
-  font-size:24px;
+  font-size:26px;
   animation:confettiFall 3s linear forwards;
 }
 
@@ -123,19 +124,12 @@ body.yes-zoom{
 
 @keyframes yesZoom{
   0%{transform:scale(1);}
-  50%{transform:scale(1.05);}
+  50%{transform:scale(1.07);}
   100%{transform:scale(1);}
 }
 </style>
 </head>
 <body>
-<!-- Floating hearts -->
-<div class="heart" style="left:10%;">💗</div>
-<div class="heart" style="left:25%;animation-delay:2s;">💖</div>
-<div class="heart" style="left:40%;animation-delay:4s;">💕</div>
-<div class="heart" style="left:60%;animation-delay:1s;">💞</div>
-<div class="heart" style="left:80%;animation-delay:3s;">💓</div>
-
 <div class="card">
   <h1>Will you be my Valentine? 💘</h1>
   <p id="text"></p>
@@ -152,16 +146,16 @@ allow="autoplay; encrypted-media"></iframe>
 <script>
 let noCount = 0;
 const noTexts = [
-  "Are u sure? 😜",
-  "I love you so muchh, come on! 😅",
-  "I'll buy u chicken biryani 🍗",
-  "Pls pookie 😘",
-  "But :(",
-  "I'm going to die 😭",
-  "Yepp I'm dead 💀",
-  "U are talking to Akshita's ghost 👻",
-  "pls babee 💖",
-  "no :("
+  "Are  u  sure?  😜",
+  "I  love  you  abhiiiii,  my  jaanu  💋💋",
+  "I'll  buy  u  chicken  biryani  🍗",
+  "Pls  pookie  😘",
+  "But  :( ",
+  "I'm  going  to  die  😭",
+  "Yepp  I'm  dead  💀",
+  "U  are  talking  to  Akshita's  ghost  👻",
+  "pls  babee  💖",
+  "no  :( "
 ];
 
 const musicFrame = document.getElementById("ytMusic");
@@ -181,9 +175,8 @@ function noClick(){
   const textEl = document.getElementById("text");
   document.body.classList.add("no-bg");
   document.body.classList.remove("yes-bg");
-
   if(noCount < noTexts.length){
-    typeWriter(textEl, noTexts[noCount], 60);
+    typeWriter(textEl, noTexts[noCount], 50);
     noCount++;
   }
 }
@@ -198,15 +191,13 @@ function yesClick(){
   document.getElementById("noBtn").style.display="none";
 
   const messages = [
-    "I love you abhiiiiii, my jaanu 💋",
-    "You're mine forever 💋",
-    "Let's make memories together 🌹"
+    "I  love  you  so  much  ❤️  You're  mine  forever  💋"
   ];
 
   let idx = 0;
   function showNextMessage(){
     if(idx < messages.length){
-      typeWriter(textEl, messages[idx], 80);
+      typeWriter(textEl, messages[idx], 70);
       idx++;
       setTimeout(showNextMessage, 2500);
     }
@@ -224,14 +215,14 @@ function yesClick(){
     setTimeout(()=>h.remove(),2000);
   }
 
-  // Bigger floating hearts
+  // Bigger floating hearts ONLY for YES
   setInterval(()=>{
     const h = document.createElement("div");
     h.className = "heart";
     const hearts = ["💗","💖","💕","💞","💓"];
     h.innerText = hearts[Math.floor(Math.random()*hearts.length)];
     h.style.left = Math.random()*100 + "%";
-    h.style.fontSize = `${40+Math.random()*30}px`;
+    h.style.fontSize = `${60+Math.random()*40}px`;
     document.body.appendChild(h);
     setTimeout(()=>h.remove(),6000);
   }, 300);
