@@ -61,7 +61,7 @@ p{
   min-height:120px;
   margin-bottom:35px;
   line-height:2;
-  word-spacing:4px; /* readable spacing */
+  word-spacing:6px; /* readable spacing */
 }
 
 button{
@@ -222,7 +222,7 @@ function yesClick(){
     const hearts = ["💗","💖","💕","💞","💓"];
     h.innerText = hearts[Math.floor(Math.random()*hearts.length)];
     h.style.left = Math.random()*100 + "%";
-    h.style.fontSize = `${60+Math.random()*40}px`;
+    h.style.fontSize = `${70+Math.random()*30}px`;
     document.body.appendChild(h);
     setTimeout(()=>h.remove(),6000);
   }, 300);
