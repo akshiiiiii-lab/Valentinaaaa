@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Will You Be My Valentine 💘</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&display=swap');
+
+body{
+  margin:0;
+  height:100vh;
+  background:
+    linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
+    url("./images/266538fb0b0e896d52a248d8e84747a0.jpg"); /* IMAGE 1 initial */
+  background-size:cover;
+  background-position:center;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:"Copperplate","Copperplate Gothic","Cinzel",serif;
+  overflow:hidden;
+  transition: background 1s ease;
+}
+
+/* NO click background */
+body.no-bg{
+  background:
+    linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)),
+    url("./images/2f1b2848897097c1b4bf44199613eea6.jpg"); /* IMAGE 2 */
+  background-size:cover;
+  background-position:center;
+}
+
+/* YES click background */
+body.yes-bg{
+  background:
+    linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)),
+    url("./images/95223aecf2f95c38457cdc9d3cbd05ff.jpg"); /* IMAGE 3 */
+  background-size:cover;
+  background-position:center;
+}
+
+.card{
+  background:rgba(255,255,255,0.9);
+  padding:30px;
+  border-radius:25px;
+  text-align:center;
+  box-shadow:0 15px 30px rgba(0,0,0,0.35);
+  width:320px;
+  z-index:2;
+}
+
+h1{
+  color:#b11226;
+}
+
+p{
+  font-size:18px;
+  color:#2b2b2b;
+  min-height:60px;
+}
+
+button{
+  padding:10px 20px;
+  border:none;
+  border-radius:20px;
+  font-size:16px;
+  cursor:pointer;
+  margin:10px;
+  font-family:inherit;
+}
+
+#yesBtn{
+  background:#b11226;
+  color:white;
+}
+
+#noBtn{
+  background:#444;
+  color:white;
+  position:relative;
+}
+
+/* Floating hearts */
+.heart{
+  position:absolute;
+  font-size:22px;
+  animation:float 6s infinite;
+}
+
+@keyframes float{
+  0%{transform:translateY(100vh);opacity:0;}
+  50%{opacity:1;}
+  100%{transform:translateY(-10vh);opacity:0;}
+}
+
+/* Heart blast */
+.blast{
+  position:absolute;
+  font-size:26px;
+  animation:blast 2s forwards;
+}
+
+@keyframes blast{
+  0%{transform:scale(0) translateY(0);opacity:1;}
+  100%{transform:scale(1.6) translateY(-180px);opacity:0;}
+}
+
+/* Confetti */
+.confetti{
+  position:absolute;
+  font-size:18px;
+  animation:confettiFall 3s linear forwards;
+}
+
+@keyframes confettiFall{
+  0%{transform:translateY(-10vh) rotate(0deg);}
+  100%{transform:translateY(100vh) rotate(360deg);}
+}
+
+/* YES zoom effect */
+body.yes-zoom{
+  animation:yesZoom 0.8s ease-in-out;
+}
+
+@keyframes yesZoom{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.05);}
+  100%{transform:scale(1);}
+}
+</style>
+</head>
+<body>
+<!-- Floating hearts initially -->
+<div class="heart" style="left:10%;">💗</div>
+<div class="heart" style="left:25%;animation-delay:2s;">💖</div>
+<div class="heart" style="left:40%;animation-delay:4s;">💕</div>
+<div class="heart" style="left:60%;animation-delay:1s;">💞</div>
+<div class="heart" style="left:80%;animation-delay:3s;">💓</div>
+
+<div class="card">
+  <h1>Will you be my Valentine? 💘</h1>
+  <p id="text"></p>
+  <button id="yesBtn" onclick="yesClick()">YES 💕</button>
+  <button id="noBtn" onclick="noClick()">NO 🙃</button>
+</div>
+
+<!-- YouTube Music -->
+<iframe id="ytMusic" width="0" height="0"
+src="https://www.youtube.com/embed/rTuxUAuJRyY?start=39&end=90&autoplay=1&loop=1&playlist=rTuxUAuJRyY"
+title="YouTube Music Player" frameborder="0"
+allow="autoplay; encrypted-media"></iframe>
+
+<script>
+let noCount = 0;
+const noTexts = [
+  "Are u sure? 😜",
+  "I love you so muchh, come on! 😅",
+  "I'll buy u chicken biryani 🍗",
+  "Pls pookie 😘",
+  "But :(",
+  "I'm going to die 😭",
+  "Yepp I'm dead 💀",
+  "U are talking to Akshita's ghost 👻",
+  "pls babee 💖",
+  "no :("  // last special message
+];
+
+const musicFrame = document.getElementById("ytMusic");
+
+function typeWriter(element, text, speed=90){
+  element.innerText = "";
+  let i = 0;
+  const interval = setInterval(()=>{
+    if(i < text.length){
+      element.innerText += text.charAt(i);
+      i++;
+    } else clearInterval(interval);
+  }, speed);
+}
+
+function noClick(){
+  const textEl = document.getElementById("text");
+  document.body.classList.add("no-bg"); // IMAGE 2 visible
+  document.body.classList.remove("yes-bg"); 
+
+  if(noCount < noTexts.length-1){
+    textEl.innerText = noTexts[noCount];
+    noCount++;
+
+    // funny move button effect
+    const noBtn = document.getElementById("noBtn");
+    noBtn.style.position = "absolute";
+    noBtn.style.top = Math.random()*80 + "%";
+    noBtn.style.left = Math.random()*80 + "%";
+
+    // small rotation animation
+    noBtn.style.transform = `rotate(${Math.random()*60-30}deg)`;
+    
+  } else {
+    // last NO click effect
+    textEl.innerText = noTexts[noCount]; // "no :("
+    noCount++;
+
+    const noBtn = document.getElementById("noBtn");
+    noBtn.style.top = "50%";
+    noBtn.style.left = "50%";
+    noBtn.style.transform = "rotate(0deg)";
+  }
+}
+
+function yesClick(){
+  const textEl = document.getElementById("text");
+  const body = document.body;
+
+  body.classList.add("yes-bg");
+  body.classList.add("yes-zoom"); // small zoom effect
+  body.classList.remove("no-bg");
+  document.getElementById("noBtn").style.display="none";
+
+  // Sequential romantic messages
+  const messages = [
+    "I love you so much ❤️",
+    "You're mine forever 💋",
+    "Let's make memories together 🌹"
+  ];
+
+  let idx = 0;
+  function showNextMessage(){
+    if(idx < messages.length){
+      typeWriter(textEl, messages[idx], 90);
+      idx++;
+      setTimeout(showNextMessage, 2500);
+    }
+  }
+  showNextMessage();
+
+  // Heart blast animation
+  for(let i=0;i<25;i++){
+    const h = document.createElement("div");
+    h.className = "blast";
+    h.innerText = "💖";
+    h.style.left = Math.random()*100 + "%";
+    h.style.top = "60%";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),2000);
+  }
+
+  // Continuous floating hearts
+  setInterval(()=>{
+    const h = document.createElement("div");
+    h.className = "heart";
+    const hearts = ["💗","💖","💕","💞","💓"];
+    h.innerText = hearts[Math.floor(Math.random()*hearts.length)];
+    h.style.left = Math.random()*100 + "%";
+    h.style.fontSize = `${16+Math.random()*20}px`;
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+  }, 300);
+
+  // Confetti / sparkles
+  setInterval(()=>{
+    const c = document.createElement("div");
+    c.className = "confetti";
+    const emojis = ["✨","💫","🌟","💖"];
+    c.innerText = emojis[Math.floor(Math.random()*emojis.length)];
+    c.style.left = Math.random()*100 + "%";
+    c.style.fontSize = `${12+Math.random()*12}px`;
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),3000);
+  }, 400);
+}
+
+// Force autoplay music (fix delay)
+setTimeout(()=>{
+  musicFrame.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+}, 1000);
+</script>
+</body>
+</html>
